@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Url Detector</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+
+</head>
+<body>
+    <header class="header">
+        <P>PhishAlert</P> 
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li><a class="nav-link" href="{{url_for('home')}}">Home</a></li>
+                <li><a class="nav-link" href="{{url_for('about')}}">About us</a></li>
+                <li><a class="nav-link" href="{{url_for('contact')}}">Contact</a></li>
+            </ul>                        
+        </nav>
+    </header>
+    
+    <section class="home">
+        <div class="container"> 
+            <form id="url-form" method="post" action="/login" >
+                <div class="input-box">
+                    <input type="text" name="url" placeholder="Paste your URL here" required="required">
+                </div>
+                <div class ='i'>
+                    <i class ="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <button type="submit" class="btn">Check URL</button>
+            </form>
+        </div>
+        <div class="img">       
+            <img src="{{ url_for('static', filename='assets/3.webp') }}">
+        </div>
+        {% if result %}
+        <div class="result" >
+            <p>{{ result }}:{{ url }}</p> 
+            <!-- <p>{{ result }}</p> -->
+        </div>
+        {% endif %}
+    </section>    
+            
+    <section class="info">
+        <div class="what-is-phishing">
+            <h2>What is a <span class="phish">Phishing URL?</span></h2>
+            <p>A phishing URL is a fake web address designed to look like it belongs to a trusted site.Scammers use it to trick people into giving away personal information,like passwords or credit card numbers, by making them think they're on a legitimate website.</p>
+        </div>
+       
+        <div class="check">
+            <h2><span class="howto">How to check if a URL is safe ?</span></h2>
+        </div>
+        <div class="square">
+            <div class="steps">
+                <h5>01</h5>
+                <i class="fa-regular fa-keyboard"></i>
+                <h6>Enter the URL.</h6>
+            </div>
+
+            <div class="steps" >
+                <h5>02</h5>
+                <i class="fa-solid fa-hourglass-start"></i>
+                <h6>Wait for few moments.</h6>
+            </div>
+
+            <div class="steps">
+                <h5>03</h5>
+                <i class="fa-regular fa-circle-check"></i>
+                <h6>See the Result.</h6>
+            </div>
+        </div>
+    </section>
+
+    <section class="avoid">
+        <div class="Avoid-Phishing">
+            <div class="row">
+                <div class=".col-12 d-flex align-item-center justify-content-center flex-column">
+                    <h2 class="section-heading">Why you should avoid <span class="phish">Phishing URL?</span></h2>
+                </div>
+            </div>
+            <div class="containers">
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="carousel-img" id="id">
+                                <img src="{{ url_for('static', filename='assets/identity_theft.jpg') }}">
+                            </div>
+                            <div class="carousel-caption">
+                                <h5 class="testimonal-name">Identity Theft:</h5>
+                                <p>Phishing URLs can steal your personal information like passwords or credit card details,leading to identity theft and financial loss.</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="carousel-img">
+                                <img src="{{ url_for('static', filename='assets/malware.webp') }}">
+                            </div>
+                            <div class="carousel-caption">
+                                <h5 class="testimonal-name">Malware Attacks:</h5>
+                                <p> Clicking on phishing links can infect your device with harmful software,allowing hackers to access your files, track your activities,or even take control of your device.<p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="carousel-img">
+                                <img src="{{ url_for('static', filename='assets/financial_fraud.jpg') }}">
+                            </div>
+                            <div class="carousel-caption">
+                                <h5 class="testimonal-name">Financial Fraud: </h5>
+                                <p>Phishing URLs often trick you into giving away banking information,enabling fraudsters to drain your accounts or make unauthorized purchases.</p>                                
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="carousel-img">
+                                <img src="{{ url_for('static', filename='assets/privacy.png') }}">
+                            </div>
+                            <div class="carousel-caption">
+                                <h5 class="testimonal-name">Privacy Breach:</h5>
+                                <p>Providing personal information on phishing websites can compromise your privacy,exposing sensitive data to cybercriminals who may misuse it.</p>        
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="carousel-img">
+                                <img src="{{ url_for('static', filename='assets/Reputation_Damage.webp') }}">
+                            </div>
+                            <div class="carousel-caption">
+                                <h5 class="testimonal-name">Reputation Damage:</h5>
+                                <p> Falling victim to phishing can damage your reputation,as scammers may use your compromised accounts to send spam or conduct fraudulent activities in your name.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="whyus">
+
+        <h2>Why<span class="alert"><span class="fl">P</span>hish<span class="fl">A</span>lert</span></h2>
+        <ul class="accordion">
+            <li>
+                <input type="radio" name="accordion" id="first" checked>
+        <label for="first">Works on all platforms</label>
+        <div class="content">
+        <p>"Experience PhishAlert anytime, anywhere, and on any device! Whether you're using your smartphone, tablet, laptop, or desktop computer.<br>
+            Enjoy a seamless experience, no matter how you choose to connect with us!"</p>
+        </div>
+    </li>
+
+        <li>
+            <input type="radio" name="accordion" id="second">
+            <label for="second">Machine Learning</label>
+        <div class="content">
+        <p>"Stay safe from harmful links with our system! We've trained it using smart tech called machine learning. <br>
+            It checks links for danger automatically, alerting you if something seems fishy. It's all done behind the scenes, so you can browse worry-free!"</p>
+        </div>
+        </li>
+
+        <li>
+            <input type="radio" name="accordion" id="third">
+        <label for="third">Totally free</label>
+        <div class="content">
+        <p>"Stay safe from dangerous links at zero cost! Our automatic system checks every link to keep you secure, and it's completely free.!"</p>
+        </div>
+    </li>
+</ul>
+    </section>
+
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+            <h3>PhishAlert</h3>
+
+            <p class="footer-links">
+                <a href="#">Home</a>
+                |
+                <a href="{{url_for('about')}}">About Us</a>
+                |
+                <a href="{{url_for('contact')}}">Contact</a>
+            </p>
+
+            <p class="footer-company-name">Copyright © 2024 <strong>PhishAlert</strong> All rights reserved</p>
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+91 93******72</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:phishalert04@gmail.com">phishalert04@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-phishalert">
+                Download 
+                <strong>PhishAlert</strong> 
+                 chrome extension.
+            </p>
+            <div class="footer-icons">
+                <a href="https://chromewebstore.google.com/?pli=1"><i class="fa-brands fa-chrome"></i></a>
+                <!-- <a href="#"><i class="fa fa-linkedin"></i></a> -->
+            </div>
+        </div>
+    </footer>
+    
+<script>
+  // JavaScript for automatic sliding
+  var myCarousel = document.getElementById('carouselExampleCaptions');
+  var carousel = new bootstrap.Carousel(myCarousel, {
+    interval: 5000, // Adjust slide interval in milliseconds (5 seconds)
+    pause: 'hover' // Pause on mouse hover
+  });
+
+
+
+</script>
+<!-- <script type="text/JavaScript">
+    function callAlert(){
+        swal("Good job!", "You clicked the button!", "success");
+    }
+    onclick="callAlert();"
+    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
